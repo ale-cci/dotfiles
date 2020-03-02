@@ -2,11 +2,15 @@ let mapleader=' '
 
 " General
 syntax on
+au! BufWritePre	* %s/\s\+$//e
+
 set nocompatible
 set backspace=indent,start,eol
 set scrolloff=2
 
+set wildmenu
 set wildignore+=*.pyc
+set wildoptions="longest:full"
 
 " Appearence
 set numberwidth=4
@@ -31,10 +35,11 @@ set hlsearch
 set incsearch
 
 
-" Key Mappings 
+" Key Mappings
 nnoremap <silent> <CR> :nohl<CR>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-nnoremap <Leader><Tab> :30Lexplore<cr>
+
+nnoremap <Leader>p :find<space>
