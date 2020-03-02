@@ -7,10 +7,11 @@ au! BufWritePre	* %s/\s\+$//e
 set nocompatible
 set backspace=indent,start,eol
 set scrolloff=2
+set path=.,**
 
 set wildmenu
 set wildignore+=*.pyc
-set wildoptions="longest:full"
+set wildmode=longest:full
 
 " Appearence
 set numberwidth=4
