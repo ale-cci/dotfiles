@@ -18,7 +18,7 @@ set nowritebackup
 set shada="NONE"
 " }}}
 
-" Indent with tabs {{{
+" Indent with spaces instead of tabs {{{
 set expandtab
 set shiftwidth=4
 set softtabstop=4
@@ -34,56 +34,40 @@ Plug 'ale-cci/aqua-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 " }}}
-" Plug 'janko/vim-test'
-" let test#strategy = 'dispatch'
 
 nnoremap <leader>P :CtrlPClearCache<cr>
 let g:ctrlp_map = '<leader>p'
-Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'https://github.com/kien/ctrlp.vim.git' " Fuzzy file search
 
 " Latex {{{
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
 let g:tex_conceal='abdmg'
 Plug 'lervag/vimtex'
-
-"  let g:livepreview_previewer = 'zathura'
-"  let g:livepreview_cursorhold_recompile = 0
-"  Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-
 " }}}
 
 " Language specific compilers for TDD {{{
-" maven
-
-" Plug 'JalaiAmitahl/maven-compiler.vim'
-" Plug 'mikelue/vim-maven-plugin'
-Plug 'dareni/vim-maven-ide'
 Plug 'haginaga/vim-compiler-phpunit'        " Phpunit compiler
-Plug 'vim-scripts/maven-plugin'
 " }}}
 
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-git'
+Plug 'tpope/vim-unimpaired'         " encodng/quickfix/buffer navigation shortcuts
+Plug 'tpope/vim-dispatch'           " Async execution of programs
+Plug 'tpope/vim-eunuch'             " Unix integration
+Plug 'tpope/vim-fugitive'           " Git integration
+Plug 'tpope/vim-rhubarb'            " github preview
+Plug 'tpope/vim-surround'           " -
+Plug 'tpope/vim-git'                " -
 
-" Plug 'tommcdo/vim-fubitive'
-
-Plug 'turbio/bracey.vim'
+Plug 'turbio/bracey.vim'            " Static site preview
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'vifm/vifm.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'lepture/vim-jinja'
 inoremap <silent><expr> <c-space> coc#refresh()
+
+Plug 'lepture/vim-jinja'            " Jinja syntax highlight
 call plug#end()
 " }}}
 
@@ -138,7 +122,8 @@ augroup END
 " }}}
 
 " Custom functions {{{
-" Run command in a dedicated terminal window
+
+" Run command in a dedicated terminal window {{{
 function! RunCommand(name)
     let l:bufname = "[ NEOTERM ]"
     let win_nr = bufwinnr(l:bufname)
@@ -154,9 +139,9 @@ function! RunCommand(name)
     :exe "file ".l:bufname
     exe winnr("#")."wincmd w"
 endfunction
+" }}}
 
-
-" Buffer for temporary notes
+" Buffer for temporary notes {{{
 function! SwBuffer()
     let l:filename="NOTE.md"
 
@@ -174,21 +159,20 @@ function! SwBuffer()
         endif
     endif
 endfunction
+"}}}
 
+" Resize vertical window with percentage
 command! -nargs=1 Vpresize :exec 'vert resize '.string(&columns * <args> / 100)
-
-command! -range=% TexEdgeNoWeight <line1>,<line2>:norm I\Edge(<esc>ei)<esc>ldwi(<esc>A)<esc>
-command! TexVerties :norm I\Vertices[unit=2]{circle}<esc>li{<esc>A}<esc>
 "}}}
 
 " Custom Key Mappings {{{
 " noremap <F9> :call RunCommand('')<left><left>
 " noremap <leader> :call RunCommand("compiler ".expand("%"))<cr>
 
-" TODO: <leader>r check syntax and run file
+
 nnoremap <Esc> :w<cr>
 
-nnoremap <leader><tab> :call SwBuffer()<cr>
+" nnoremap <leader><tab> :call SwBuffer()<cr>
 nnoremap <leader>t :TestNearest<CR>
 nnoremap <leader>T :TestSuite<CR>
 nnoremap <silent> <leader>a :A<CR>
@@ -231,7 +215,7 @@ nnoremap <silent> <leader>q :ccl<cr>:lcl<cr>
 
 " Function keys {{{
 " <F1>  Current vim Syntax tag, Maybe should be in a easily callable command?
-" <F2>  Check Style (Should be toggle check style mode)
+" <F2>
 " <F3>
 " <F4>
 " <F5>
