@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+# Custom password manager
+
+SEPR=","
+accounts="$(gpg -d $HOME/.config/secrets.gpg)"
+
+selected="$(echo $accounts | cut -d $SEPR -f-2 | sed "s/$SEPR//g" | dmenu -i -p "Account: " -l 10)"
+
+[[ ! $selected ]] && exit
+
+
+echo -n $accounts | awk "/$(echo $selected | sed -r 's/\s+/\/ \&\& \//g')/" | cut -d "$SEPR" -f3- | tr -d "\n" | xclip -selection clipboard

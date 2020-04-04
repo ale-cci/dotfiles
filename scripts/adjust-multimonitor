@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+# Enable dual screen
+POSITION="--right-of"
+EXTERNAL="DP2"
+LAPTOP="eDP1"
+
+xrandr --output $EXTERNAL --primary --mode 1920x1080 --output $LAPTOP $POSITION $EXTERNAL

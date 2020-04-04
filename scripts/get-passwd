@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+[[ ! "$1" ]] && exit
+
+SEPR=","
+gpg -q -d $HOME/.config/secrets.gpg | grep "$1" | cut -d "$SEPR" -f3- | tr -d "\n"
+

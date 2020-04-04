@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+PDF_DIR=$HOME/Documents/Pdf
+
+to_open="$( find -L $PDF_DIR -regex ".*\.pdf" | xargs -d "\n" realpath "--relative-base=$PDF_DIR" | sort | dmenu -p "Pdf: " -i -l 10 )"
+
+[ ! -z "$to_open" ] && zathura "$PDF_DIR/$to_open"

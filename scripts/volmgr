@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Alsa wrapper, used to change system volume
+
+case $1 in
+    toggle) amixer sset Master toggle ;;
+    mute);;
+    unmute) ;;
+    *) amixer sset Master $1 ;;
+esac
+
+# Refresh statusbar
+kill $(ps -t tty1 | grep sleep | awk '{print $1}')
