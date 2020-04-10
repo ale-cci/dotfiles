@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+song=$(mpc list title | dmenu -l 10 -i -p "Song: ")
+[ -z "$song" ] && exit 1
+mpc searchplay any "$song" >/dev/null
+
