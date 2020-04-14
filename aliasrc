@@ -18,7 +18,8 @@ alias vimrc="vim $HOME/.vimrc"\
     gdiff="git diff"\
     fn='find . -name'\
     showcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"\
-    ltxclear="rm *.fdb_latexmk *.fls *.log *.pgf-plot.gnuplot *.synctex.gz *.au *.fd"
+    ltxclear="rm *.fdb_latexmk *.fls *.log *.pgf-plot.gnuplot *.synctex.gz *.au *.fd"\
+    pwedit="nvim ~/.config/secrets.gpg"
 
 vf() {
     $EDITOR $(find . -name $1)

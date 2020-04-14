@@ -29,6 +29,7 @@ set tabstop=4
 call plug#begin()
 Plug 'ale-cci/aqua-vim'
 " Plug 'ale-cci/vimdoc'
+Plug 'junegunn/seoul256.vim'
 
 " Jsx syntax {{{
 Plug 'pangloss/vim-javascript'
@@ -64,8 +65,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-inoremap <silent><expr> <c-space> coc#refresh()
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 Plug 'lepture/vim-jinja'            " Jinja syntax highlight
 call plug#end()
@@ -73,8 +74,11 @@ call plug#end()
 
 " Appearance {{{
 syntax enable
-colorscheme aqua-vim
-" set background=dark
+" colorscheme aqua-vim
+set notermguicolors
+let g:seoul256_background=233
+colorscheme seoul256
+
 set relativenumber
 set notermguicolors
 
@@ -205,8 +209,6 @@ vnoremap + "+y
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-let g:shellprg="bash"
-nnoremap <buffer> <silent> <leader>` :call RunCommand(expand(g:shellprg))<cr>
 
 nnoremap <M-w> :bd!<cr>
 
@@ -259,7 +261,6 @@ augroup aug
     au FileType html setlocal ts=2 sts=2 sw=2
 
     au FileType php nmap <leader>c :Dispatch php -l %<cr>
-    au FileType php let g:shellprg="php -a"
 
     au FileType java nnoremap <leader>c :Dispatch mvn compile<cr>
     au FileType java nnoremap <leader>s :Dispatch mvn checkstyle:check<cr>
@@ -270,14 +271,11 @@ augroup aug
     au FileType pom nnoremap <leader>t :Dispatch mvn test<cr>
     au FileType pom setlocal makeprg=mvn
 
-    au FileType js let g:shellprg="node"
 
-    au FileType haskell let g:shellprg="ghci"
     au FileType haskell setlocal makeprg=ghc\ -dynamic
     au FileType haskell nnoremap <buffer> <leader>c :Make %<cr>
 
     " Run unittest on the current file
-    au FileType python let g:shellprg="ipython"
     au FileType python nnoremap <leader>t :!python -m unittest %<cr>
     au FileType python nnoremap <leader>s :!pylint\ --reports=n\ --output-format=parseable\ %:p
     au FileType python set makeprg=python\ -m\ doctest\ %
@@ -295,8 +293,10 @@ augroup aug
 
     au FileType tex nnoremap <leader>c :VimtexCompile<cr>
     au FileType tex setlocal spell
-    au FileType tex set spelllang=it_it,en_us
+    au FileType tex setlocal spelllang=it_it,en_us
     au FileType tex setlocal conceallevel=1
+    au FileType tex setlocal textwidth=120
+    au FileType tex setlocal colorcolumn=120
 
     au FileType scss nnoremap <leader>c :execute('!sass % '.substitute(expand('%'), 'scss', 'min.css', ''))<cr>
 
@@ -335,5 +335,7 @@ set shellcmdflag=-ic
 " set signcolumn=yes:1
 " }}}
 
+" Latex precompiled
+set wildignore+=*.aux,*.log,*.fls,*.synctex.gz,*.sinctex(busy),*fdb_latexmk,*.out,*.toc,*.ilg,*.ind,*.idx,*.xdv
 set wildignore+=*.pyc,*.obj,*.o,*.git,*.class,tags,*.lock,*.jar
 set wildignore+=*/node_modules/*,*/vendor/*
