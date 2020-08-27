@@ -41,6 +41,7 @@ let g:ctrlp_map = '<leader>p'
 Plug 'https://github.com/kien/ctrlp.vim.git' " Fuzzy file search
 
 " Latex {{{
+let g:tex_flavor='latex'
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'zathura'
 let g:tex_conceal='abdmg'
@@ -60,15 +61,18 @@ Plug 'tpope/vim-surround'           " -
 Plug 'tpope/vim-git'                " -
 
 Plug 'turbio/bracey.vim'            " Static site preview
+
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " inoremap <silent><expr> <c-space> coc#refresh()
 
 Plug 'lepture/vim-jinja'            " Jinja syntax highlight
+Plug 'fatih/vim-go'
+
 call plug#end()
 " }}}
 
@@ -87,9 +91,13 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set cursorline
 set laststatus=1
 
+" Show invisible characters
+set showbreak=↪\
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+set list
+
 " Highlight java primitives
 let java_highlight_java_lang_ids=1
-
 " }}}
 
 " Transparent editing of GPG encrypted files {{{
@@ -173,7 +181,6 @@ command! -nargs=1 Vpresize :exec 'vert resize '.string(&columns * <args> / 100)
 " noremap <F9> :call RunCommand('')<left><left>
 " noremap <leader> :call RunCommand("compiler ".expand("%"))<cr>
 
-
 nnoremap <Esc> :w<cr>
 
 " nnoremap <leader><tab> :call SwBuffer()<cr>
@@ -183,11 +190,6 @@ nnoremap <silent> <leader>a :A<CR>
 nnoremap <silent> <leader>A :AV<CR>
 
 nnoremap <leader>c :Make<cr>
-
-nnoremap <leader>F :CocCommand editor.action.organizeImport<cr>
-
-nnoremap <silent> <leader>x :CocAction<cr>
-nnoremap <silent> <leader><leader> :set rnu!<cr>
 
 " Center matches
 map n nzz
@@ -251,6 +253,7 @@ augroup aug
     au BufWritePost init.vim source %
     au BufWritePost .tmux.conf :!tmux source-file %
 
+    au FileType asm set ft=nasm
 
     au FileType vim nnoremap <buffer> <leader>c :PlugClean<cr>
     au FileType vim nnoremap <buffer> <leader>i :PlugInstall<cr>
@@ -259,6 +262,8 @@ augroup aug
 
     au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
     au FileType html setlocal ts=2 sts=2 sw=2
+    au FileType css setlocal ts=2 sts=2 sw=2
+    au FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 
     au FileType php nmap <leader>c :Dispatch php -l %<cr>
 
@@ -295,10 +300,11 @@ augroup aug
     au FileType tex setlocal spell
     au FileType tex setlocal spelllang=it_it,en_us
     au FileType tex setlocal conceallevel=1
-    au FileType tex setlocal textwidth=120
     au FileType tex setlocal colorcolumn=120
 
     au FileType scss nnoremap <leader>c :execute('!sass % '.substitute(expand('%'), 'scss', 'min.css', ''))<cr>
+
+    au FileType go nnoremap <leader>d :GoDoc<cr>
 
     " Hide numbers on terminal
     au TermOpen * setlocal nonumber norelativenumber
@@ -325,7 +331,6 @@ set hidden
 set exrc
 set secure
 
-set listchars=eol:$,tab:»·,trail:·,extends:>,precedes:<,nbsp:¬
 
 " Find files recursively under current directory
 set path=$PWD/**
@@ -336,6 +341,6 @@ set shellcmdflag=-ic
 " }}}
 
 " Latex precompiled
-set wildignore+=*.aux,*.log,*.fls,*.synctex.gz,*.sinctex(busy),*fdb_latexmk,*.out,*.toc,*.ilg,*.ind,*.idx,*.xdv
+set wildignore+=*.aux,*.log,*.fls,*.synctex.gz,*.sinctex(busy),*fdb_latexmk,*.out,*.toc,*.ilg,*.ind,*.idx,*.xdv,*.pdf
 set wildignore+=*.pyc,*.obj,*.o,*.git,*.class,tags,*.lock,*.jar
 set wildignore+=*/node_modules/*,*/vendor/*

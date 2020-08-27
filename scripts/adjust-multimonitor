@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 # Enable dual screen
-POSITION="--right-of"
-EXTERNAL="DP2"
+POSITION="--left-of"
 LAPTOP="eDP1"
 
-xrandr --output $EXTERNAL --primary --mode 1920x1080 --output $LAPTOP $POSITION $EXTERNAL
+# EXTERNAL=$(xrandr -q | awk "/ connected/&&!/^${LAPTOP}/{print \$1}")
+EXTERNAL=DP1
+
+
+# Enable dual screen
+    #xrandr --output "$EXTERNAL" --off --output "$LAPTOP" --auto
+     xrandr --output $EXTERNAL --primary --mode 1920x1080 --output $LAPTOP $POSITION $EXTERNAL

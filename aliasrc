@@ -2,6 +2,7 @@
 
 # Default Make flags
 export CFLAGS='-Wall -O2'
+export GOPATH="$HOME/go"
 
 alias ls='ls --color'\
     lsa='ls -lah'
@@ -17,7 +18,6 @@ alias vimrc="vim $HOME/.vimrc"\
     vis="$EDITOR -S Session.vim"\
     gdiff="git diff"\
     fn='find . -name'\
-    showcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"\
     ltxclear="rm *.fdb_latexmk *.fls *.log *.pgf-plot.gnuplot *.synctex.gz *.au *.fd"\
     pwedit="nvim ~/.config/secrets.gpg"
 
