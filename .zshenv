@@ -21,3 +21,6 @@ export ANDROID_SDK=$HOME/Android/Sdk
 # Custom projects
 export BEIFI_DIR=$HOME/projects/beifi-web
 export BEIFI_MOBILE_DIR=$HOME/projects/beifi-app
+
+# Config files
+export LESSHISTFILE=$HOME/.cache/.lesshst

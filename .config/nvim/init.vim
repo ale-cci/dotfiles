@@ -250,10 +250,15 @@ nnoremap <F12> :grep TODO **/*.*<cr>
 " AutoCmds & File Type AutoCmds {{{
 augroup aug
     au!
+
+    " Reload folds previously saved with mkview
+    au BufWinEnter * silent! loadview
+
     au BufWritePost init.vim source %
     au BufWritePost .tmux.conf :!tmux source-file %
 
     au FileType asm set ft=nasm
+    au FileType asm set expandtab
 
     au FileType vim nnoremap <buffer> <leader>c :PlugClean<cr>
     au FileType vim nnoremap <buffer> <leader>i :PlugInstall<cr>
@@ -305,6 +310,15 @@ augroup aug
     au FileType scss nnoremap <leader>c :execute('!sass % '.substitute(expand('%'), 'scss', 'min.css', ''))<cr>
 
     au FileType go nnoremap <leader>d :GoDoc<cr>
+    au FileType go nnoremap <leader>o :GoCoverageToggle<cr>
+    au FileType go nnoremap <leader>c :GoTestBuild<cr>
+    au FileType go nnoremap <leader>t :GoTest<cr>
+    au FileType go nnoremap <M-b> :GoDebugBreakpoint<cr>
+    au FileType go nnoremap <F9> :GoDebugTest<cr>
+    au FileType go nnoremap <M-n> :GoDebugNext<cr>
+    au FileType go nnoremap <M-t> :GoDebugStep<cr>
+    au FileType go nnoremap <M-x> :GoDebugStop<cr>
+    au FileType go nnoremap <M-c> :GoDebugContinue<cr>
 
     " Hide numbers on terminal
     au TermOpen * setlocal nonumber norelativenumber

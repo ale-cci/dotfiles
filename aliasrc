@@ -3,6 +3,7 @@
 # Default Make flags
 export CFLAGS='-Wall -O2'
 export GOPATH="$HOME/go"
+export PATH="$PATH:$HOME/go/bin"
 
 alias ls='ls --color'\
     lsa='ls -lah'
@@ -24,5 +25,4 @@ alias vimrc="vim $HOME/.vimrc"\
 vf() {
     $EDITOR $(find . -name $1)
 }
-
 
