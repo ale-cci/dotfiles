@@ -9,6 +9,8 @@ ia fucntion function
 ia cosnt const
 ia heigth height
 ia widht width
+ia mian main
+ia stirng string
 " }}}
 
 " No backup files {{{
@@ -30,6 +32,11 @@ call plug#begin()
 Plug 'ale-cci/aqua-vim'
 " Plug 'ale-cci/vimdoc'
 Plug 'junegunn/seoul256.vim'
+
+
+Plug 'ayu-theme/ayu-vim'
+
+
 
 " Jsx syntax {{{
 Plug 'pangloss/vim-javascript'
@@ -60,7 +67,7 @@ Plug 'tpope/vim-rhubarb'            " github preview
 Plug 'tpope/vim-surround'           " -
 Plug 'tpope/vim-git'                " -
 
-Plug 'turbio/bracey.vim'            " Static site preview
+" Plug 'turbio/bracey.vim'            " Static site preview
 
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -70,7 +77,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " inoremap <silent><expr> <c-space> coc#refresh()
 
-Plug 'lepture/vim-jinja'            " Jinja syntax highlight
+" Plug 'lepture/vim-jinja'            " Jinja syntax highlight
 Plug 'fatih/vim-go'
 
 call plug#end()
@@ -78,13 +85,15 @@ call plug#end()
 
 " Appearance {{{
 syntax enable
-" colorscheme aqua-vim
-set notermguicolors
-let g:seoul256_background=233
-colorscheme seoul256
+" set notermguicolors
+" let g:seoul256_background=233
+" colorscheme seoul256
+
+set termguicolors
+let ayucolor="dark"
+colorscheme ayu
 
 set relativenumber
-set notermguicolors
 
 " Add Fugitive to status line
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -181,11 +190,9 @@ command! -nargs=1 Vpresize :exec 'vert resize '.string(&columns * <args> / 100)
 " noremap <F9> :call RunCommand('')<left><left>
 " noremap <leader> :call RunCommand("compiler ".expand("%"))<cr>
 
-nnoremap <Esc> :w<cr>
+nnoremap <silent> <Esc> :w<cr>
 
 " nnoremap <leader><tab> :call SwBuffer()<cr>
-nnoremap <leader>t :TestNearest<CR>
-nnoremap <leader>T :TestSuite<CR>
 nnoremap <silent> <leader>a :A<CR>
 nnoremap <silent> <leader>A :AV<CR>
 
@@ -342,6 +349,7 @@ set smartcase
 
 set hidden
 
+" Per-project nvim configuration
 set exrc
 set secure
 
@@ -351,10 +359,14 @@ set path=$PWD/**
 
 " Recognize alias
 set shellcmdflag=-ic
+
 " set signcolumn=yes:1
+
 " }}}
 
 " Latex precompiled
 set wildignore+=*.aux,*.log,*.fls,*.synctex.gz,*.sinctex(busy),*fdb_latexmk,*.out,*.toc,*.ilg,*.ind,*.idx,*.xdv,*.pdf
+" Binaries
 set wildignore+=*.pyc,*.obj,*.o,*.git,*.class,tags,*.lock,*.jar
+" External libraries or modules
 set wildignore+=*/node_modules/*,*/vendor/*

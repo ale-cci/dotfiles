@@ -20,7 +20,10 @@ alias vimrc="vim $HOME/.vimrc"\
     gdiff="git diff"\
     fn='find . -name'\
     ltxclear="rm *.fdb_latexmk *.fls *.log *.pgf-plot.gnuplot *.synctex.gz *.au *.fd"\
-    pwedit="nvim ~/.config/secrets.gpg"
+    passwords="nvim ~/.config/secrets.gpg"
+
+
+source "$HOME/notes/.conf/config.sh"
 
 vf() {
     $EDITOR $(find . -name $1)
