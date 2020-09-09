@@ -79,6 +79,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Plug 'lepture/vim-jinja'            " Jinja syntax highlight
 Plug 'fatih/vim-go'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 " }}}
