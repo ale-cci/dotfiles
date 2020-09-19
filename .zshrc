@@ -56,11 +56,9 @@ HIST_STAMPS="dd-mm-yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump docker extract npm mvn zsh-autosuggestions)
+plugins=(git autojump docker extract npm zsh-autosuggestions)
 
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/aliasrc
-#
-# Config files

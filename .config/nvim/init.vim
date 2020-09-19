@@ -33,9 +33,7 @@ Plug 'ale-cci/aqua-vim'
 " Plug 'ale-cci/vimdoc'
 Plug 'junegunn/seoul256.vim'
 
-
 Plug 'ayu-theme/ayu-vim'
-
 
 
 " Jsx syntax {{{
@@ -43,9 +41,12 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 " }}}
 
-nnoremap <leader>P :CtrlPClearCache<cr>
-let g:ctrlp_map = '<leader>p'
-Plug 'https://github.com/kien/ctrlp.vim.git' " Fuzzy file search
+" nnoremap <leader>P :CtrlPClearCache<cr>
+" let g:ctrlp_map = '<leader>p'
+" Plug 'https://github.com/kien/ctrlp.vim.git' " Fuzzy file search
+
+Plug 'junegunn/fzf.vim'
+nnoremap <leader>p :Files<cr>
 
 " Latex {{{
 let g:tex_flavor='latex'

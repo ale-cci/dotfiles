@@ -5,9 +5,6 @@ export CFLAGS='-Wall -O2'
 export GOPATH="$HOME/go"
 export PATH="$PATH:$HOME/go/bin"
 
-alias ls='ls --color'\
-    lsa='ls -lah'
-
 alias vimrc="vim $HOME/.vimrc"\
     nvimrc="nvim $HOME/.config/nvim/init.vim"\
     zshenv="$EDITOR $HOME/.zshenv"\
@@ -16,9 +13,7 @@ alias vimrc="vim $HOME/.vimrc"\
     aliasrc="$EDITOR $HOME/aliasrc"\
     mkpwd="head -c 500 /dev/urandom | tr -dc 'a-zA-Z0-9!@#%^&*_-' | head -c 14"\
     copy="xclip -selection clipboard"\
-    vis="$EDITOR -S Session.vim"\
     gdiff="git diff"\
-    fn='find . -name'\
     ltxclear="rm *.fdb_latexmk *.fls *.log *.pgf-plot.gnuplot *.synctex.gz *.au *.fd"\
     passwords="nvim ~/.config/secrets.gpg"
 
