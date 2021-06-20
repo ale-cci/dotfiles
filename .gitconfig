@@ -1,3 +1,18 @@
 [user]
 	email = alecrd98@gmail.com
 	name = ale-cci
+	singingkey = 1CD2710B7FD6F835FB61A42A46175F1656A4A454
+	signingkey = 1CD2710B7FD6F835FB61A42A46175F1656A4A454
+[gpg]
+	program = gpg2
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master

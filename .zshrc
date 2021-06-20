@@ -3,8 +3,10 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/ale-cci/.oh-my-zsh"
+export DOCKER_BUILDKIT=1
 
 ZSH_THEME="garyblessington"
+
 
 
 # Uncomment the following line to use case-sensitive completion.

@@ -4,6 +4,7 @@
 export CFLAGS='-Wall -O2'
 export GOPATH="$HOME/go"
 export PATH="$PATH:$HOME/go/bin"
+export SUDO_ASKPASS=$HOME/scripts/dmenu-askpass
 
 alias vimrc="vim $HOME/.vimrc"\
     nvimrc="nvim $HOME/.config/nvim/init.vim"\
@@ -15,7 +16,8 @@ alias vimrc="vim $HOME/.vimrc"\
     copy="xclip -selection clipboard"\
     gdiff="git diff"\
     ltxclear="rm *.fdb_latexmk *.fls *.log *.pgf-plot.gnuplot *.synctex.gz *.au *.fd"\
-    passwords="nvim ~/.config/secrets.gpg"
+    passwords="nvim ~/.config/secrets.gpg"\
+    cat=bat
 
 
 source "$HOME/notes/.conf/config.sh"
@@ -24,3 +26,7 @@ vf() {
     $EDITOR $(find . -name $1)
 }
 
+NEWCFG="$HOME/.config/newcfg.vim"
+alias e="nvim -u $NEWCFG"\
+    erc="nvim -u $NEWCFG $NEWCFG"\
+    vim="nvim -u /dev/null"

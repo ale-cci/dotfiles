@@ -1,12 +1,19 @@
 #!/usr/bin/env sh
 # Enable dual screen
-POSITION="--left-of"
+POSITION="--right-of"
 LAPTOP="eDP1"
+RESOLUTION=1920x1080
 
-# EXTERNAL=$(xrandr -q | awk "/ connected/&&!/^${LAPTOP}/{print \$1}")
-EXTERNAL=DP1
+# Achtung!!
+# when you cannot find mode 1920x1080 try to add it with
+# `xrandr --addmode $EXTERNAL 1920x1080`
 
+EXTERNAL=$(xrandr -q | awk "/ connected/&&!/^${LAPTOP}/{print \$1}")
+# EXTERNAL=$(xrandr -q | awk "/\<connected\>/&&!/^${LAPTOP}/{ print \$1}")
+# EXTERNAL=DP1
+echo $EXTERNAL
 
 # Enable dual screen
-    #xrandr --output "$EXTERNAL" --off --output "$LAPTOP" --auto
-     xrandr --output $EXTERNAL --primary --mode 1920x1080 --output $LAPTOP $POSITION $EXTERNAL
+#xrandr --output "$EXTERNAL" --off --output "$LAPTOP" --auto
+
+xrandr --output $EXTERNAL --primary --mode "$RESOLUTION" --output $LAPTOP $POSITION $EXTERNAL

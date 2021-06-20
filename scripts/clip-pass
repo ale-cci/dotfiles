@@ -1,8 +1,9 @@
 #!/usr/bin/env zsh
-# Custom password manager
+# Custom password manager.
+# Ask password with dmenu + do some other things that i don't remember now.
 
 SEPR=","
-accounts="$(gpg -d $HOME/.config/secrets.gpg)"
+accounts=`dmenu-askpass "[clip-passwd] Master password:" | gpg --pinentry-mode loopback --passphrase-fd 0 -d $HOME/.config/secrets.gpg`
 
 selected="$(echo $accounts | cut -d $SEPR -f-2 | sed "s/$SEPR//g" | dmenu -i -p "Account: " -l 10)"
 
