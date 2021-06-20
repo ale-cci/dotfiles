@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+filename="$1"
+ffmpeg -i "$filename" -vn -ar 44100 -ac 2 -b:a 192k "${filename%.*}.mp3"

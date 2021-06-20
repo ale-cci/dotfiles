@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Script used to upload file to android phone
+cd "$HOME/Desktop/uni"
+PASSWD=''
+USER='test'
+
+upload() {
+    for arg in $@
+    do
+        echo "put $arg/$arg.pdf $arg.pdf"
+    done
+}
+
+ftp -n 192.168.0.190 8888 <<END_SCRIPT
+quote USER test
+quote PASS test
+binary
+cd "Internal Storage (LGE LG-H930)/Pdf"
+$(upload ace masd elettronica)
+ls
+quit
+END_SCRIPT
+

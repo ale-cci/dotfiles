@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+dmenu -sb "#d79921" -sf "#1d2021" --password -p "$1" <&- && echo
